@@ -26,7 +26,7 @@ public class employeeController {
     public String addNewEmployee(Model model){
         employee emp= new employee();
         model.addAttribute("newEmp",emp);
-        return "newEmployee";
+        return "newEmp";
 
     }
     @PostMapping("/save")
@@ -39,7 +39,7 @@ public class employeeController {
     public String updateEmp(@PathVariable(value="id") long id,Model model){
         employee emp=empService.updateEmployee((int) id);
         model.addAttribute("employee",emp);
-        return "update";
+        return "updateEmp";
     }
 
     @GetMapping("/delete/{id}")
