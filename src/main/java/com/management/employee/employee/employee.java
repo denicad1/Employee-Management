@@ -66,4 +66,24 @@ public class employee {
                 ", department='" + department + '\'' +
                 '}';
     }
+    public employee() {
+    }
+
+    public employee( String firstName, String email) {
+        this.firstName = firstName;
+        this.email = email;
+    }
+
+    public employee( String firstName, String email, String department) {
+        this.firstName = firstName;
+        this.email = email;
+        this.department = department;
+    }
+
+    public employee(String firstName, String lastName, String email, String department) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.department = department;
+    }
 }

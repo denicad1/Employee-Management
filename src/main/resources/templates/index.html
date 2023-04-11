@@ -1,10 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Employee Management</title>
+    <link rel="stylesheet" th:href="@{/main.css}">
 </head>
+
 <body>
+    <div class="container mx-auto">
+        <a th:href="@{/newEmployee}" class="btn btn-blue">New Employee</a>
+        <h1>List of All Employees with Departments</h1>
+        <table class="table-auto">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Department</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="emp:${empList}">
+                    <td th:text="${emp.id}"></td>
+                    <td th:text="${emp.firstName} ${emp.lastName}"></td>
+                    <td th:text="${emp.email}"></td>
+                    <td th:text="${emp.department}"></td>
+                    <td><a th:href="@{/update/{id}(id=${emp.id})}" class="btn btn-blue">Update</a></td>
+                    <td> <a th:href="@{/delete/{id}(id=${emp.id})}" class="btn btn-blue">Remove</a></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 
 </body>
+
 </html>
