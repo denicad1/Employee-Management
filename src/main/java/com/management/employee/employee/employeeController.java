@@ -1,12 +1,13 @@
 package com.management.employee.employee;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RestController
+@Controller
 public class employeeController {
 
     private final employeeService empService;
@@ -25,7 +26,7 @@ public class employeeController {
     public String addNewEmployee(Model model){
         employee emp= new employee();
         model.addAttribute("newEmp",emp);
-        return "newEmp";
+        return "newEmployee";
 
     }
     @PostMapping("/save")
