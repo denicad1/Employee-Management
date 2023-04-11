@@ -1,6 +1,5 @@
 package com.management.employee.employee;
 
-import com.management.employee.department.department;
 import jakarta.persistence.*;
 
 @Entity
@@ -14,9 +13,8 @@ public class employee {
     private String firstName;
     private String lastName;
     private String email;
-    @ManyToOne
-    @JoinColumn(name = "department_ID",referencedColumnName = "id")
-    private department department;
+
+    private String department;
 
     public int getId() {
         return id;
@@ -50,11 +48,11 @@ public class employee {
         this.email = email;
     }
 
-    public department getDepartment() {
+    public String getDepartment() {
         return department;
     }
 
-    public void setDepartment(department department) {
+    public void setDepartment(String department) {
         this.department = department;
     }
 
