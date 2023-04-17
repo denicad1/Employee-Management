@@ -1,25 +1,35 @@
 package com.management.employee.employee;
 
+import com.management.employee.user.user;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 public class employeeController {
 
     private final employeeService empService;
+    private Map<String, LocalDateTime> usersLastAccess = new HashMap<>();
 
     @Autowired
     public employeeController(employeeService empService) {
-
         this.empService = empService;
     }
     @GetMapping("/")
-    public String empListLandingPage(Model model){
-    model.addAttribute("empList",empService.getEmployees());
+    public String empListLandingPage(@AuthenticationPrincipal user user,Model model){
+        String username = user.getUsername();
+        model.addAttribute("empList",empService.getEmployees());
+        model.addAttribute("username", username);
+        model.addAttribute("lastAccess", usersLastAccess.get(username));
+
+        usersLastAccess.put(username, LocalDateTime.now());
         return "index";
     }
     @GetMapping("/newEmployee")
@@ -38,7 +48,7 @@ public class employeeController {
     @GetMapping("/update/{id}")
     public String updateEmp(@PathVariable(value="id") long id,Model model){
         employee emp=empService.updateEmployee((int) id);
-        model.addAttribute("employee",emp);
+        model.addAttribute("newEmp",emp);
         return "updateEmp";
     }
 
@@ -47,4 +57,5 @@ public class employeeController {
         empService.deleteEmployee((int) id);
         return "redirect:/";
     }
+
 }
