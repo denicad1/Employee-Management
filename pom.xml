@@ -11,7 +11,6 @@
 	<groupId>com.management</groupId>
 	<artifactId>employee</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>war</packaging>
 	<name>employee</name>
 	<description>Project for employee management</description>
 	<properties>
