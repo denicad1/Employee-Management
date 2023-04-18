@@ -16,7 +16,6 @@ import java.util.Map;
 public class employeeController {
 
     private final employeeService empService;
-    private Map<String, LocalDateTime> usersLastAccess = new HashMap<>();
 
     @Autowired
     public employeeController(employeeService empService) {
@@ -24,12 +23,7 @@ public class employeeController {
     }
     @GetMapping("/")
     public String empListLandingPage(@AuthenticationPrincipal user user,Model model){
-        String username = user.getUsername();
         model.addAttribute("empList",empService.getEmployees());
-        model.addAttribute("username", username);
-        model.addAttribute("lastAccess", usersLastAccess.get(username));
-
-        usersLastAccess.put(username, LocalDateTime.now());
         return "index";
     }
     @GetMapping("/newEmployee")
