@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add New Employee</title>
+    <link rel="stylesheet" th:href="@{/main.css}">
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+    <div class="container grid place-items-center mt-40">
+        <h1 class="bg-amber-200 text-xl p-3 mb-2">Add New Employee</h1>
+        <form action="#" th:action="@{/save}" th:object="${newEmp}" method="post" class="flex flex-col space-y-2">
+            <input type="text" th:field="*{firstName}" placeholder="Employee First Name">
+            <input type="text" th:field="*{lastName}" placeholder="Employee Last Name">
+            <input type="text" th:field="*{email}" placeholder="Employee Email">
+            <input type="text" th:field="*{department}" placeholder="Employee Department">
+            <button type="submit" class="bg-blue-100 rounded p-2 hover:bg-blue-300 transition-all">Save Employee</button>
+            <hr>
+            <a th:href="@{/}" class="bg-slate-100 rounded p-2 hover:bg-slate-300 transition-all">Back to List of Employees</a>
+        </form>
+    </div>
+</body>
+</html>
